@@ -1,21 +1,20 @@
 import flet as ft
-import os 
+YOUR_BACKGROUND_PATH = R""
 
-cwd = os.getcwd()
-
-class ChildCard(ft.Container):
+class ChildCard(ft.Container): #主控件内的单个小卡片
     
     def __init__(self,bgcolor,width,height):
+
         # 动画函数
         def _on_hover(e):
-            # 改变
+            # 改变长宽
             
             if not e.control.data:
                 self.height += 50
                 self.width += 25
                 e.control.data = 1
                 
-            # 还原
+            # 还原长宽
             else:
                 self.height -= 50
                 self.width -= 25
@@ -35,7 +34,7 @@ class ChildCard(ft.Container):
         )
 
 
-class MainContainer(ft.Container):
+class MainContainer(ft.Container):  
     def __init__(self, ):
         _row = ft.Row(
             [ChildCard(bgcolor=ft.colors.WHITE,width=80,height=500) for _ in range(8)],
@@ -54,12 +53,11 @@ class MainContainer(ft.Container):
 
 
 def main(page:ft.Page):
-    page.bgcolor = ft.colors.GREY_500
+    
     page.horizontal_alignment = 'center'
     page.vertical_alignment = 'center'
     maincard = MainContainer()
-    
-    img = ft.Image(src=r"C:\Users\Administrator\Desktop\PYGUI\flet\Main\手风琴\BACKGROUND.jpg",fit=ft.ImageFit.CONTAIN,)
+    img = ft.Image(src=YOUR_BACKGROUND_PATH,fit=ft.ImageFit.CONTAIN,) # 你的照片路径
     stack = ft.Stack(
         [img,
         maincard],
